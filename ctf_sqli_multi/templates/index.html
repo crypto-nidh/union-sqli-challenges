@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h1 class="h3 mb-3">SQL Injection Scenarios</h1>
+          <p class="text-muted">Pick a scenario and try to extract the hidden flag from the database. Hints: UNION-based SQLi can be useful.</p>
+          <ul class="list-group">
+            {% for c in challenges %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ c.name }}
+              <a class="btn btn-primary btn-sm" href="/challenge{{ c.id }}">Open</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

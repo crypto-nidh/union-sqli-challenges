@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-8 mx-auto">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h1 class="h4 mb-3">E-Commerce Products</h1>
+        <p class="text-muted">This internal tool lets staff look up records. Try a normal search first. If you see odd behavior, it may indicate a vulnerability.</p>
+        <form method="POST" class="row g-2">
+          <div class="col-9">
+            <input name="q" class="form-control" placeholder="Search by product name">
+          </div>
+          <div class="col-3 d-grid">
+            <button class="btn btn-primary" type="submit">Search</button>
+          </div>
+        </form>
+        {% if last_query %}
+        <div class="alert alert-secondary mt-3"><strong>Debug:</strong> Last query executed: <code>{{ last_query }}</code></div>
+        {% endif %}
+        {% if results %}
+        <div class="table-responsive mt-3">
+          <table class="table table-striped">
+            <thead><tr><th>id</th><th>name</th><th>price</th></tr></thead>
+            <tbody>
+              {% for r in results %}
+              <tr><td>{{ r['id'] }}</td><td>{{ r['name'] }}</td><td>{{ r['price'] }}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="mt-3 text-muted">No results yet.</p>
+        {% endif %}
+        <a href="/" class="btn btn-link mt-2">← Back</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
